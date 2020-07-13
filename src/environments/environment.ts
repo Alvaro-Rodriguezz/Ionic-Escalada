@@ -4,7 +4,16 @@
 
 export const environment = {
   production: false,
-
+  firebaseConfig: {
+    apiKey: 'AIzaSyCllarQJDUGnKqzJIwZOPdOzMoJaby7xuQ',
+    authDomain: 'verano-68ff5.firebaseapp.com',
+    databaseURL: 'https://verano-68ff5.firebaseio.com/',
+    projectId: 'verano-68ff5',
+    storageBucket: 'verano-68ff5.appspot.com',
+    messagingSenderId: '304355206309',
+    appId: '1:304355206309:web:3d9f97ea585014fa28194c',
+    measurementId: 'G-9K0M9ZF8WD'
+  }
 };
 
 /*

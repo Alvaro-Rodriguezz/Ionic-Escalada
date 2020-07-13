@@ -2,14 +2,11 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', loadChildren: () => import('./page/islas/islas.module').then(m => m.MunicipiosPageModule)},
   {
-    path: 'home',
-    loadChildren: () => import('./page/islas/islas.module').then(m => m.MunicipiosPageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: 'add/:isla',
+    loadChildren: () => import('./page/add/add.module').then( m => m.AddPageModule)
   }
 ];
 

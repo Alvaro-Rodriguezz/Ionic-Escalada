@@ -9,7 +9,7 @@ const routes: Routes = [
     component: IslasPage
   },
   {
-    path: 'ruta-list',
+    path: ':isla',
     loadChildren: () => import('./ruta-list/ruta-list.module').then( m => m.RutaListPageModule)
   }
 ];

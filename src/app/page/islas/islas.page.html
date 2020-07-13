@@ -26,12 +26,8 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/add">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+
   <ion-list>
-    <ion-item button *ngFor="let isla of (islas | async)" >{{isla.name}}</ion-item>
+    <ion-item button *ngFor="let isla of (islas | async)" [routerLink]="['/home', isla.name]">{{isla.name}}</ion-item>
   </ion-list>
 </ion-content>

@@ -1,9 +1,26 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>ruta-detail</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ruta.nombre}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-item>
+    <img src="{{ruta.urlFoto}}">
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Dificultad</ion-label>
+    <ion-label> {{ruta.dificultad}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Isla</ion-label>
+    <ion-label> {{ruta.isla}}</ion-label>
+  </ion-item>
 </ion-content>
+
+<ion-footer>
+  <ion-button color="danger" expand="full">Eliminar</ion-button>
+</ion-footer>

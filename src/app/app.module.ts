@@ -15,6 +15,7 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
 import * as  firebase from 'firebase/app';
 import {ReactiveFormsModule} from '@angular/forms';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 firebase.initializeApp(environment.firebaseConfig);
 
@@ -28,6 +29,7 @@ firebase.initializeApp(environment.firebaseConfig);
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     ReactiveFormsModule
   ],
   providers: [

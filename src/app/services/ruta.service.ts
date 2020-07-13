@@ -2,22 +2,27 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 import {Ruta} from './ruta.model';
-import {map} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
+import DocumentReference = firebase.firestore.DocumentReference;
+import * as firebase from 'firebase';
 
 @Injectable({
     providedIn: 'root'
 })
 export class RutaService {
-    private lugares: Observable<Ruta[]>;
-    private lugarCollection: AngularFirestoreCollection<Ruta>;
+    private rutas: Observable<Ruta[]>;
+    private rutaCollection: AngularFirestoreCollection<Ruta>;
 
     constructor(private angularFirestore: AngularFirestore) {}
 
-    getRutasEnIsla(isla: string){
-        this.lugarCollection = this.angularFirestore.collection<Ruta>('lugares', ref => {
-            return ref.where('isla', '==', isla);
+    getRutasEnIsla(isla: string): Observable<Ruta[]>{
+        this.rutaCollection = this.angularFirestore.collection<Ruta>('rutas', ref => {
+            return ref.where('isla', '==', isla).orderBy('nombre', 'desc');
         });
-        this.lugares = this.lugarCollection.snapshotChanges().pipe(
+        return this.getData();
+    }
+    getData(){
+        return this.rutaCollection.snapshotChanges().pipe(
             map(actions => {
                 return actions.map(a => {
                     const data = a.payload.doc.data();
@@ -26,5 +31,26 @@ export class RutaService {
                 });
             })
         );
+    }
+
+    orderBy(tipo: string, orden: any, isla: string){
+        this.rutaCollection = this.angularFirestore.collection<Ruta>('rutas', ref => {
+            return ref.where('isla', '==', isla).orderBy(tipo, orden);
+        });
+        return this.getData();
+    }
+
+    getRutaId(id: string): Observable<Ruta> {
+        return this.rutaCollection.doc<Ruta>(id).valueChanges().pipe(
+            take(1),
+            map(lugar => {
+                lugar.id = id;
+                return lugar;
+            })
+        );
+    }
+
+    addRuta(ruta: Ruta): Promise<DocumentReference> {
+        return this.rutaCollection.add(ruta);
     }
 }

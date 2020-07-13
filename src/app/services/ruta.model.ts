@@ -1,7 +1,7 @@
 export class Ruta{
+    dificultad: string;
     isla: string;
     nombre: string;
-    dificultad: string;
-    foto: string;
-
+    id?: string;
+    urlFoto: string;
 }

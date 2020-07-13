@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {RutaService} from '../../../services/ruta.service';
+import {Observable} from 'rxjs';
+import {Islas} from '../../../services/islas.model';
+import {Ruta} from '../../../services/ruta.model';
 
 @Component({
   selector: 'app-ruta-list',
@@ -7,9 +12,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RutaListPage implements OnInit {
 
-  constructor() { }
+  ordenar = 'nombre';
+  asc = 'asc';
+  mostrar = true;
+  isla: string = this.activatedRoute.snapshot.paramMap.get('isla');
+  private rutas: Observable<Ruta[]>
+  constructor(private activatedRoute: ActivatedRoute,
+              private rutaService: RutaService,
+              private router: Router) {
 
-  ngOnInit() {
   }
 
+  ngOnInit() {
+    if (this.isla){
+      this.rutas = this.rutaService.getRutasEnIsla(this.isla);
+      console.log(this.ordenar);
+      console.log(this.asc);
+    }
+  }
+
+  ordenarRutas(){
+    this.rutas = this.rutaService.orderBy(this.ordenar, this.asc, this.isla);
+  }
+
+  cambiarAsc(tipo: string){
+    this.asc = tipo;
+    this.ordenarRutas();
+    this.mostrar = !this.mostrar;
+  }
 }
