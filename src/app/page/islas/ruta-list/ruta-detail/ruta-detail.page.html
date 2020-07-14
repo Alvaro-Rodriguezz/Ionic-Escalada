@@ -3,14 +3,18 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ruta.nombre}}</ion-title>
+    <ion-title class="ion-text-center">{{ruta.nombre}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <img src="{{ruta.urlFoto}}">
-  </ion-item>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col>
+        <ion-img src="{{ruta.urlFoto}}" style="width: 100%"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-item>
     <ion-label position="stacked">Dificultad</ion-label>
     <ion-label> {{ruta.dificultad}}</ion-label>
@@ -22,5 +26,5 @@
 </ion-content>
 
 <ion-footer>
-  <ion-button color="danger" expand="full">Eliminar</ion-button>
+  <ion-button color="danger" expand="full" (click)="deleteRuta()">Eliminar</ion-button>
 </ion-footer>

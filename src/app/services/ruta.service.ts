@@ -53,4 +53,8 @@ export class RutaService {
     addRuta(ruta: Ruta): Promise<DocumentReference> {
         return this.rutaCollection.add(ruta);
     }
+
+    deleteruta(id: string): Promise<void> {
+        return this.rutaCollection.doc(id).delete();
+    }
 }

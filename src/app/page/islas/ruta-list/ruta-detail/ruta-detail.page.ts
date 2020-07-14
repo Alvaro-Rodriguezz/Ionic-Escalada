@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {RutaService} from '../../../../services/ruta.service';
 import {Ruta} from '../../../../services/ruta.model';
+import {ToastController} from '@ionic/angular';
 
 @Component({
   selector: 'app-ruta-detail',
@@ -18,7 +19,9 @@ export class RutaDetailPage implements OnInit {
   };
 
   constructor(private activatedRoute: ActivatedRoute,
-              private rutaService: RutaService) { }
+              private rutaService: RutaService,
+              private router: Router,
+              private toastController: ToastController) { }
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -29,4 +32,19 @@ export class RutaDetailPage implements OnInit {
     }
   }
 
+  deleteRuta(){
+    this.rutaService.deleteruta(this.ruta.id).then(() => {
+      this.router.navigateByUrl('/home/' + this.ruta.isla);
+      this.showToast('Ruta eliminada');
+    }, err => {
+      this.showToast('No se pudo eliminar la ruta');
+      console.log(err);
+    });
+  }
+  showToast(msg) {
+    this.toastController.create({
+      message: msg,
+      duration: 2000
+    }).then(toast => toast.present());
+  }
 }
