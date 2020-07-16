@@ -33,7 +33,7 @@ export class RutaDetailPage implements OnInit {
   }
 
   deleteRuta(){
-    this.rutaService.deleteruta(this.ruta.id).then(() => {
+    this.rutaService.deleteruta(this.ruta.id, this.ruta.urlFoto).then(() => {
       this.router.navigateByUrl('/home/' + this.ruta.isla);
       this.showToast('Ruta eliminada');
     }, err => {

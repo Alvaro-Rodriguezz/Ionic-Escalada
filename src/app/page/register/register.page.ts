@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { AuthenticateService } from '../../services/authentication.service';
 import { NavController } from '@ionic/angular';
+import {AuthenticateService} from '../../services/authenntication.service';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +22,7 @@ export class RegisterPage implements OnInit {
     ],
     password: [
       { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 5 characters long.' }
+      { type: 'minlength', message: 'Password must be at least 6 characters long.' }
     ]
   };
 
@@ -39,7 +39,7 @@ export class RegisterPage implements OnInit {
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
       password: new FormControl('', Validators.compose([
-        Validators.minLength(5),
+        Validators.minLength(6),
         Validators.required
       ])),
     });
@@ -51,7 +51,7 @@ export class RegisterPage implements OnInit {
           console.log(res);
           console.log('La cuenta se creo correctamente');
           this.errorMessage = '';
-          this.navCtrl.navigateForward('/lugar-list').then((e) => {
+          this.navCtrl.navigateForward('/home').then((e) => {
             if (e) {
               console.log('Navigation is successful!');
             } else {

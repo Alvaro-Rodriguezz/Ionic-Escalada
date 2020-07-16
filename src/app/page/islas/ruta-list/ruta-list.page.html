@@ -33,12 +33,17 @@
 
   </ion-row>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="userConnect()">
     <ion-fab-button [routerLink]="['/add', isla]">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-list>
-    <ion-item button *ngFor="let ruta of (rutas | async)" [routerLink]="['/home/ruta-list', ruta.id]">{{ruta.nombre}} </ion-item>
-  </ion-list>
+  <ion-row>
+    <ion-col button *ngFor="let ruta of (rutas | async)" [routerLink]="['/home/ruta-list', ruta.id]" size="6"><ion-card>
+      <img src="{{ruta.urlFoto}}" style="height: 120px; width: 100%"/>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">{{ruta.nombre}}</ion-card-title>
+      </ion-card-header>
+    </ion-card></ion-col>
+  </ion-row>
 </ion-content>

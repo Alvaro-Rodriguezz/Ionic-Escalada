@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 import {Ruta} from './ruta.model';
-import {map, take} from 'rxjs/operators';
+import {catchError, map, take} from 'rxjs/operators';
 import DocumentReference = firebase.firestore.DocumentReference;
 import * as firebase from 'firebase';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +14,8 @@ export class RutaService {
     private rutas: Observable<Ruta[]>;
     private rutaCollection: AngularFirestoreCollection<Ruta>;
 
-    constructor(private angularFirestore: AngularFirestore) {}
+    constructor(private angularFirestore: AngularFirestore,
+                private storage: AngularFireStorage) {}
 
     getRutasEnIsla(isla: string): Observable<Ruta[]>{
         this.rutaCollection = this.angularFirestore.collection<Ruta>('rutas', ref => {
@@ -54,7 +56,8 @@ export class RutaService {
         return this.rutaCollection.add(ruta);
     }
 
-    deleteruta(id: string): Promise<void> {
+    deleteruta(id: string, foto: any): Promise<void> {
+        this.storage.storage.refFromURL(foto).delete();
         return this.rutaCollection.doc(id).delete();
     }
 }

@@ -73,19 +73,23 @@ export class AddPage implements OnInit {
   addRuta() {
     const url = '/home/' + this.isla;
     this.ruta.urlFoto = this.urlFoto;
-    this.rutaService.addRuta(this.ruta).then(() => {
-      this.router.navigateByUrl(url).then((e) => {
-        if (e) {
-          console.log('Navigation is successful!');
-        } else {
-          console.log('Navigation has failed!');
-        }
-        return false;
+    if (this.ruta.nombre === '' || this.ruta.urlFoto === '' || this.ruta.dificultad === ''){
+      this.showToast('Por favor, rellene todos los campos');
+    } else {
+      this.rutaService.addRuta(this.ruta).then(() => {
+        this.router.navigateByUrl(url).then((e) => {
+          if (e) {
+            console.log('Navigation is successful!');
+          } else {
+            console.log('Navigation has failed!');
+          }
+          return false;
+        });
+        this.showToast('Ruta añadida');
+      }, () => {
+        this.showToast('There was a problem adding your lugar =(');
       });
-      this.showToast('Ruta añadida');
-    }, () => {
-      this.showToast('There was a problem adding your lugar =(');
-    });
+    }
   }
 
   async showToast(msg) {
@@ -118,7 +122,7 @@ export class AddPage implements OnInit {
     this.path = `imagenes/${new Date().getTime()}_${file.name}`;
     console.log(this.path);
     // Totally optional metadata
-    const customMetadata = { app: 'Freaky Image Upload Demo' };
+    const customMetadata = { app: 'Storage Alvaro' };
 
     //File reference
     const fileRef = this.storage.ref(this.path);

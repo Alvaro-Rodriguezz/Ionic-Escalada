@@ -1,3 +1,4 @@
 export class Islas{
-    name: string;
+    nombre: string;
+    foto: string;
 }

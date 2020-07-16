@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import * as  firebase from 'firebase/app';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireStorage} from '@angular/fire/storage';
 
 firebase.initializeApp(environment.firebaseConfig);
 
