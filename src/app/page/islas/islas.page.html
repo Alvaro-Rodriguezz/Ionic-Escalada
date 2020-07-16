@@ -6,7 +6,7 @@
 
 
 <ion-content>
-  <ion-fab vertical="bottom" horizontal="start" slot="fixed" *ngIf="userConnect()">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="userConnect()">
     <ion-fab-button color="secondary">
       <ion-icon name="person"></ion-icon>
     </ion-fab-button>
@@ -19,7 +19,7 @@
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
-  <ion-fab vertical="bottom" horizontal="start" slot="fixed" *ngIf="!userConnect()">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="!userConnect()">
     <ion-fab-button color="secondary" (click)="goLoginPage()">
       <ion-icon name="log-in"></ion-icon>
     </ion-fab-button>
