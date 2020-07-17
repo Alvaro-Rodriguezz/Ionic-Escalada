@@ -11,7 +11,6 @@ import {AngularFireStorage} from '@angular/fire/storage';
     providedIn: 'root'
 })
 export class RutaService {
-    private rutas: Observable<Ruta[]>;
     private rutaCollection: AngularFirestoreCollection<Ruta>;
 
     constructor(private angularFirestore: AngularFirestore,
@@ -23,6 +22,7 @@ export class RutaService {
         });
         return this.getData();
     }
+
     getData(){
         return this.rutaCollection.snapshotChanges().pipe(
             map(actions => {
