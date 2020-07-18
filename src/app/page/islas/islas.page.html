@@ -25,15 +25,16 @@
     </ion-fab-button>
   </ion-fab>
 
-
   <ion-list>
     <ion-row>
-      <ion-col button *ngFor="let isla of (islas | async)" [routerLink]="['/home', isla.nombre]" size="6"><ion-card>
-        <img src="{{isla.foto}}" style="height: 120px; width: 100%"/>
-        <ion-card-header>
-          <ion-card-title class="ion-text-center">{{isla.nombre}}</ion-card-title>
-        </ion-card-header>
-      </ion-card></ion-col>
+      <ion-col button *ngFor="let isla of (islas | async)" [routerLink]="['/home', isla.nombre]" size="6">
+        <ion-card>
+          <img src="{{isla.foto}}" style="height: 120px; width: 100%"/>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">{{isla.nombre}}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
     </ion-row>
   </ion-list>
 </ion-content>
