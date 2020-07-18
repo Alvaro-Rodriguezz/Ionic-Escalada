@@ -10,6 +10,7 @@ import {AuthenticateService} from '../../services/authenntication.service';
   templateUrl: './islas.page.html',
   styleUrls: ['./islas.page.scss'],
 })
+
 export class IslasPage implements OnInit {
 
   private islas: Observable<Islas[]>;

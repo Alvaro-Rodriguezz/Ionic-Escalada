@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RutaService} from '../../../services/ruta.service';
 import {Observable} from 'rxjs';
-import {first, map} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {Ruta} from '../../../services/ruta.model';
 import {AuthenticateService} from '../../../services/authenntication.service';
 
@@ -56,7 +56,7 @@ export class RutaListPage implements OnInit {
     this.searchText = '';
     if (this.searchTerm != null) {
       this.searchText = this.searchTerm.toLowerCase();
-      console.log(this.searchText)
+      console.log(this.searchText);
     } else {
       this.searchText = '';
     }

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary"  class="ion-text-center">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
     <ion-title>{{isla}}</ion-title>
   </ion-toolbar>
@@ -21,13 +21,13 @@
     </ion-col>
     <ion-col size="2" *ngIf="mostrar == true; else elseBlock">
       <ion-item>
-        <ion-icon button name="arrow-down-outline" (click)="cambiarAsc('desc')"></ion-icon>
+        <ion-icon name="arrow-down-outline" (click)="cambiarAsc('desc')"></ion-icon>
       </ion-item>
     </ion-col>
     <ng-template #elseBlock>
       <ion-col size="2">
         <ion-item>
-          <ion-icon button name="arrow-up-outline" (click)="cambiarAsc('asc')"></ion-icon>
+          <ion-icon name="arrow-up-outline" (click)="cambiarAsc('asc')"></ion-icon>
         </ion-item>
       </ion-col>
     </ng-template>
@@ -40,8 +40,8 @@
     </ion-fab-button>
   </ion-fab>
   <ion-row>
-    <ion-col button *ngFor="let ruta of (rutas | async)" [routerLink]="['/home/ruta-list', ruta.id]" size="6"><ion-card>
-      <img src="{{ruta.urlFoto}}" style="height: 120px; width: 100%"/>
+    <ion-col *ngFor="let ruta of (rutas | async)" [routerLink]="['/home/ruta-list', ruta.id]" size="6"><ion-card>
+      <img src="{{ruta.urlFoto}}" alt="Foto de la ruta" style="height: 120px; width: 100%"/>
       <ion-card-header>
         <ion-card-title class="ion-text-center">{{ruta.nombre}}</ion-card-title>
       </ion-card-header>
